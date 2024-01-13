@@ -1,2 +1,4 @@
-package otus.sliders;public class CompaniesSliderTest {
+package otus.sliders;
+
+public class CompaniesSliderTest {
 }
