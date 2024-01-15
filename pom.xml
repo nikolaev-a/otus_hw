@@ -24,6 +24,9 @@
         <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
 
         <base.url/>
+        <browser.version/>
+        <browser>chrome</browser>
+
     </properties>
 
     <dependencies>
@@ -64,6 +67,8 @@
                 <configuration>
                     <systemPropertyVariables>
                         <url>${base.url}</url>
+                        <browser>${browser}</browser>
+                        <browser.version>${browser.version}</browser.version>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
