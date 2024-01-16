@@ -14,14 +14,15 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <junit.version>5.8.1</junit.version>
+        <junit.version>5.8.2</junit.version>
         <selenium.java.version>3.141.59</selenium.java.version>
-        <webdriver.manager.version>4.2.0</webdriver.manager.version>
+        <webdriver.manager.version>5.6.2</webdriver.manager.version>
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
         <spotbugs.plugin.version>4.8.2.0</spotbugs.plugin.version>
         <spotbugs.version>4.8.2</spotbugs.version>
         <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
+        <org.slf4j.version>2.0.11</org.slf4j.version>
 
         <base.url/>
         <browser.version/>
@@ -46,6 +47,24 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdriver.manager.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${org.slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

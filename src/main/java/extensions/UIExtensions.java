@@ -11,28 +11,32 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+
+import java.util.Set;
+
 
 public class UIExtensions implements BeforeEachCallback, AfterEachCallback {
 
-    private WebDriver driver = null;
+    private  EventFiringWebDriver eventFiringWebDriver = null;
 
-    private List<Field> getField(Class<? extends Annotation> annotation, Class<?> clazz){
-
-        return  Arrays.stream(clazz.getFields()).
-                filter((Field field) -> field.isAnnotationPresent(annotation)
-                        && field.getType().getName().equals(WebDriver.class.getName())).collect(Collectors.toList());
+    private Set<Field> getField(Class<? extends Annotation> annotation, ExtensionContext extensionContext){
+        Set<Field> fields = new HashSet<>();
+        Class<?> testClass = extensionContext.getTestClass().get();
+        for (Field field: testClass.getDeclaredFields()){
+            if(field.isAnnotationPresent(annotation)&& field.getType().getName().equals(WebDriver.class.getName())) {
+                fields.add(field);
+            };
+        }
+        return fields;
     }
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
-        Class<?> clazz = extensionContext.getTestInstance().getClass();
 
-        List<Field> annotatedFields = this.getField(Driver.class, clazz);
+        Set<Field> annotatedFields = this.getField(Driver.class, extensionContext);
 
-        EventFiringWebDriver eventFiringWebDriver = new WebDriverFactory().create();
+        eventFiringWebDriver = new WebDriverFactory().create();
         eventFiringWebDriver.register(new WebDriverListener());
 
         for (Field field: annotatedFields){
@@ -42,10 +46,10 @@ public class UIExtensions implements BeforeEachCallback, AfterEachCallback {
     }
 
     @Override
-    public void afterEach(ExtensionContext extensionContext) throws Exception {
-        if(driver != null) {
-            driver.close();
-            driver.quit();
+    public void afterEach(ExtensionContext extensionContext) {
+        if(eventFiringWebDriver != null) {
+            eventFiringWebDriver.close();
+            eventFiringWebDriver.quit();
         }
     }
 }

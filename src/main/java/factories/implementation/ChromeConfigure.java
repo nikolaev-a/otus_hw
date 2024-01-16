@@ -11,11 +11,11 @@ public class ChromeConfigure implements IBrowserConfigure{
 
     @Override
     public WebDriver configure() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--start-fullscreen");
-        chromeOptions.addArguments("--homepage=about:blank");
-
         WebDriverManager.chromedriver().browserVersion(browserVersion).setup();
+
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--homepage=about:blank");
 
         return new ChromeDriver(chromeOptions);
     }
