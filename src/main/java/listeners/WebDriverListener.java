@@ -76,8 +76,9 @@ public class WebDriverListener implements WebDriverEventListener {
     }
 
     @Override
-    public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        ((JavascriptExecutor)webDriver).executeScript("arguments[0].style.border='3px solid red';");
+    public void beforeClickOn(WebElement element, WebDriver driver) {
+        element.click();
+        System.out.println("[ИНФОРМАЦИЯ]: произведен клик по кнопке " + element);
     }
 
     @Override

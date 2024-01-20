@@ -3,6 +3,7 @@ package otus.sliders;
 import anotations.Driver;
 
 import anotations.Page;
+
 import extensions.UIExtensions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,15 +14,18 @@ import pages.MainPage;
 public class CompaniesSliderTest {
 
     @Driver
-    private WebDriver driver;
+    WebDriver driver;
 
     @Page
     private MainPage mainPage;
 
     @Test
-    public void testTest() {
+    public void testTest() throws InterruptedException {
 
-        new MainPage(driver).open().checkPage();
-
+        new MainPage(driver).open()
+                .checkPageOpeningMarker()
+                .highlightElement()
+                .removeHighlightElement()
+                .filterByCourseName("Специализация сетевой инженер");
     }
 }
