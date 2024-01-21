@@ -77,8 +77,7 @@ public class WebDriverListener implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        element.click();
-        System.out.println("[ИНФОРМАЦИЯ]: произведен клик по кнопке " + element);
+        System.out.println("[ИНФОРМАЦИЯ]: произведено нажатие на кнопку " + element);
     }
 
     @Override

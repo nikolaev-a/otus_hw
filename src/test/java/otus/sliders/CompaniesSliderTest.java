@@ -17,12 +17,20 @@ public class CompaniesSliderTest {
     MainPage mainPage;
 
     @Test
-    public void testTest() throws InterruptedException {
+    public void testTest1() {
 
         mainPage.open()
                 .checkPageOpeningMarker()
                 .highlightElement()
                 .removeHighlightElement()
+                .filterByCourseIsTimeStart();
+
+    }
+
+    @Test
+    public void testTest2() {
+
+        mainPage.open()
                 .filterByCourseName("Специализация сетевой инженер");
 
     }
