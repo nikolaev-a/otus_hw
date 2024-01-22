@@ -1,12 +1,12 @@
 package pages;
 
+import assertion.Asserts;
 import helpers.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import waiters.Waiter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,11 +15,11 @@ import java.util.List;
 
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.openqa.selenium.interactions.Actions;
 
 public class MainPage extends BasePageAbs<MainPage> {
 
-    Waiter wait = new Waiter(driver);
+    Asserts asserts = new Asserts(driver);
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -33,6 +33,14 @@ public class MainPage extends BasePageAbs<MainPage> {
 
     @FindBy(xpath = "//h5")
     List<WebElement> courses;
+
+    @FindBy(xpath = "//h5[contains(.,'Специализация С++')]")
+    WebElement courseCPlus;
+
+
+    @FindBy(xpath = "//h5[contains(.,'Специализация Python')]")
+    WebElement coursePython;
+
 
     @FindBy(xpath = "//span[contains(., 'С') and contains(., 'месяцев')]")
     List<WebElement> coursesStartTime;
@@ -51,8 +59,7 @@ public class MainPage extends BasePageAbs<MainPage> {
     }
 
     public MainPage checkPageOpeningMarker() {
-        wait.waitForElementVisible(pageOpeningMarker);
-        assertTrue(pageOpeningMarker.isDisplayed());
+        asserts.checkPageOpeningMarker(pageOpeningMarker);
         return this;
     }
 
@@ -95,5 +102,16 @@ public class MainPage extends BasePageAbs<MainPage> {
             earliestCard.click();
         }
         return this;
+    }
+
+    public PythonDeveloper selectCourseUsingAction() {
+        Actions actions = new Actions(driver);
+        actions
+                .moveToElement(courseCPlus)
+                .click(coursePython)
+                .build()
+                .perform();
+
+        return new PythonDeveloper(driver);
     }
 }

@@ -31,7 +31,17 @@ public class CompaniesSliderTest {
     public void testTest2() {
 
         mainPage.open()
+                .checkPageOpeningMarker()
                 .filterByCourseName("Специализация сетевой инженер");
 
+    }
+
+    @Test
+    public void testTest3() {
+
+        mainPage.open()
+                .checkPageOpeningMarker()
+                .selectCourseUsingAction()
+                .checkHeaderPage();
     }
 }

@@ -18,7 +18,7 @@ public class Waiter extends BaseUtilsAbs {
     }
 
     public boolean waitForCondition(ExpectedCondition condition) {
-        WebDriverWait wait = new WebDriverWait(driver, 180);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
         try {
             wait.pollingEvery(Duration.ofMillis(100)).until(condition);
             return true;
