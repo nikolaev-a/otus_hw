@@ -23,10 +23,12 @@
         <spotbugs.version>4.8.2</spotbugs.version>
         <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
         <org.slf4j.version>2.0.11</org.slf4j.version>
+        <io.cucumber.version>5.5.0</io.cucumber.version>
+        <com.google.inject.version>5.1.0</com.google.inject.version>
 
         <browser.version/>
         <browser>chrome</browser>
-        <webdriver.base.url>https://otus.ru</webdriver.base.url>
+        <base.url>https://otus.ru</base.url>
 
     </properties>
 
@@ -66,13 +68,39 @@
             <version>24.0.0</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${io.cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${io.cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${com.google.inject.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-guice</artifactId>
+            <version>${io.cucumber.version}</version>
+        </dependency>
+
     </dependencies>
 
     <profiles>
         <profile>
             <id>production</id>
             <properties>
-                <webdriver.base.url>https://otus.ru</webdriver.base.url>
+                <base.url>https://otus.ru</base.url>
             </properties>
         </profile>
     </profiles>
@@ -86,7 +114,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <browser>${browser}</browser>
-                        <webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+                        <base.url>${base.url}</base.url>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
