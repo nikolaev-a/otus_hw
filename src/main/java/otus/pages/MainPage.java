@@ -21,8 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MainPage extends BasePageAbs<MainPage> {
 
-
-
     @Inject
     public MainPage(GuiceScoped guiceScoped) {
         super(guiceScoped);
@@ -119,5 +117,25 @@ public class MainPage extends BasePageAbs<MainPage> {
                 .perform();
 
         return new PythonDeveloper(guiceScoped);
+    }
+
+    public MainPage filterByCourseData(String courseTime) {
+        List<WebElement> filteredCourses = coursesStartTime.stream().filter(element ->
+                element.getText().contains(courseTime)).collect(Collectors.toList());
+
+        if(filteredCourses.isEmpty()) {
+            System.out.printf("[ИНФОРМАЦИЯ]: страница не содержит курса на заданную дату '%s'\n", courseTime);
+        }
+        else if(filteredCourses.size() > 1) {
+            System.out.printf("[ИНФОРМАЦИЯ]: страница содержит несколько курсов, стартующих '%s'\n", courseTime);
+            for (WebElement course: filteredCourses){
+                System.out.println("[ИНФОРМАЦИЯ]: курс - " + course.getText());
+            }
+        } else {
+            courses.stream().filter(el -> el.getText().contains(courseTime));
+            System.out.printf("[ИНФОРМАЦИЯ]: страница содержит выбранный курс '%s'\n", courseTime);
+            filteredCourses.get(0).click();
+        }
+        return this;
     }
 }

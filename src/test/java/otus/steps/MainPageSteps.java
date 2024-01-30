@@ -38,6 +38,11 @@ public class MainPageSteps {
         mainPage.filterByCourseName(courseName);
     }
 
+    @Тогда("Выберем обучающий курс по дате {string}")
+    public void choosingByCourseData(String courseData) {
+        mainPage.filterByCourseData(courseData);
+    }
+
     @Тогда("Выберем обучающий курс c помощью Action")
     public void choosingCourseUsingAction() {
         mainPage.selectCourseUsingAction();
