@@ -3,6 +3,7 @@ package otus.pageobject;
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import otus.assertion.Asserts;
 import otus.support.GuiceScoped;
 import otus.waiters.Waiter;
 

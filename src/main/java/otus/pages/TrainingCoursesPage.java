@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import otus.anotations.URLPrefix;
-import otus.assertion.Asserts;
 import otus.support.GuiceScoped;
 
 import java.util.List;
@@ -46,7 +45,6 @@ public class TrainingCoursesPage extends BasePageAbs<TrainingCoursesPage> {
     }
 
     public TrainingCoursesPage checkPageOpeningMarker() {
-        //asserts.checkPageOpeningMarker(trainingCoursesPageMarker);
         wait.waitForElementVisible(trainingCoursesPageMarker);
         assertTrue(trainingCoursesPageMarker.isDisplayed());
         System.out.println("[ИНФОРМАЦИЯ]: произведена успешная проверка открытия страницы по маркеру"
