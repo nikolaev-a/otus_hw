@@ -18,5 +18,3 @@ public class GuiceScoped {
     return this.driver;
   }
 }
-
-
