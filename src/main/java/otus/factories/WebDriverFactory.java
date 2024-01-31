@@ -11,10 +11,10 @@ import java.util.Locale;
 
 public class WebDriverFactory implements IFactory<EventFiringWebDriver>{
 
-    private final String browserName = System.getProperty("browser", "chrome");
+    //private final String browserName = System.getProperty("browser", "chrome");
 
     @Override
-    public EventFiringWebDriver create() {
+    public EventFiringWebDriver create(String browserName) {
         switch (BrowserData.valueOf(browserName.toUpperCase(Locale.ROOT))) {
             case CHROME : {
                 return new EventFiringWebDriver(new ChromeConfigure().configure());

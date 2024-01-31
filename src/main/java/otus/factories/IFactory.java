@@ -1,5 +1,5 @@
 package otus.factories;
 
 public interface IFactory<T> {
-    T create();
+    T create(String parameter);
 }

@@ -12,12 +12,6 @@ public class MainPageSteps {
     @Inject
     public MainPage mainPage;
 
-    @Пусть("Открыта главная страница")
-    public void openMainPage() {
-        mainPage.open()
-                .checkPageOpeningMarker();
-    }
-
     @Тогда("Реализуем подсветку элемента")
     public void elementHighlighting() {
         mainPage.highlightElement();

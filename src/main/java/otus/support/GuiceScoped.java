@@ -7,7 +7,12 @@ import io.cucumber.guice.ScenarioScoped;
 @ScenarioScoped
 public class GuiceScoped {
 
-  private EventFiringWebDriver driver = new WebDriverFactory().create();
+  //public EventFiringWebDriver driver = new WebDriverFactory().create();
+  private EventFiringWebDriver driver;
+
+  public void setDriver(EventFiringWebDriver driver) {
+    this.driver = driver;
+  }
 
   public EventFiringWebDriver getDriver(){
     return this.driver;
